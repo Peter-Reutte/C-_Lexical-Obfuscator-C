@@ -1,0 +1,115 @@
+﻿<Window x:Class="Obfuscator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Obfuscator"
+        mc:Ignorable="d"
+        Title="Obfuscator" 
+        MinHeight="760"
+        MinWidth="1000"
+        Height="760" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" 
+        Icon="Resources/lock.png">
+    <StackPanel Background="#6f849c">
+        <!-- меню -->
+        <StackPanel>
+            <Menu>
+                <MenuItem Header="Файл">
+                    <MenuItem x:Name="mi_Download" Click="btn_OpenFile_Click" Header="Загрузить"></MenuItem>
+                    <MenuItem x:Name="miObfuscate" Click="btn_Obfuscate_Click" Header="Обфусцировать"></MenuItem>
+                    <MenuItem x:Name="miSave" Click="btn_SaveFile_Click" Header="Сохранить результат" ></MenuItem>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <Grid Margin="0, 20" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <!-- загрузка файлов -->
+                <StackPanel Background="#243547" Orientation="Horizontal" Margin="30,10,0,0">
+                    <Label x:Name="lbl_adress" Content="C:\\" ToolTip="Адрес загруженного файла"
+                           FontSize="12" BorderBrush="Black" BorderThickness="1" Width="250" Height="30" 
+                           VerticalAlignment="Center" Background="White" Margin="5,5,5,5">
+                    </Label>
+                    <Button ToolTip="Загрузить файл"
+                        x:Name="btn_OpenFile" Width="35" Height="35" HorizontalAlignment="Right" BorderThickness="0" Click="btn_OpenFile_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/download (1).png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <!-- исходный код -->
+                        <StackPanel>
+                            <Label Content="Исходный код" FontSize="13" Margin="30, 0" HorizontalAlignment="Left" FontWeight="Medium"/>
+                            <RichTextBox x:Name="SourceCodeTexBox" Margin="30, 0, 30, 20" Height="180" Width="Auto" BorderBrush="#243547" IsReadOnly="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="2" />
+                        </StackPanel>
+                        <!-- Обфусцированный код -->
+                        <StackPanel>
+                            <Label Content="Обфусцированный код" FontSize="13" Margin="30, 0" HorizontalAlignment="Left" FontWeight="Medium"/>
+                            <RichTextBox Name="ObfuscatedCodeTextBox" Margin="30, 0" Height="180" Width="Auto" BorderBrush="#243547" BorderThickness="2"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <Button x:Name="btn_Obfuscate" Background="#a6b7c6" Content="Обфусцировать" Click="btn_Obfuscate_Click" 
+                                Width="120" Height="35" Margin="0, 30, 0, 4" FontWeight="Medium" ToolTip="Запусить процесс обфускации"/>
+                        <Button x:Name="btn_SaveFile" Background="#a6b7c6" FontWeight="Medium" ToolTip="Сохранить в выбранной папке" Content="Сохранить" Height="35" Width="120" Margin="0, 10" Click="btn_SaveFile_Click" />
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+            <StackPanel Background="#243547" Grid.Column="1" Margin="10, 10, 20, 15">
+
+                <Grid Height="15" Width="15" Background="White" HorizontalAlignment="Left">
+                    <Button x:Name="btn_Hidden" ToolTip="Свернуть" 
+                            HorizontalAlignment="Left" Height="15" Width="15" Click="btn_Hidden_Click" VerticalAlignment="Top">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/1.png"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button x:Name="btn_Visible" Height="15" Width="15" ToolTip="Развернуть"
+                            HorizontalAlignment="Left"  Click="btn_Visible_Click" Visibility="Hidden">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/plus-3-512.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+
+
+                <TextBlock x:Name="tbl_AboutObfuscation" TextWrapping="Wrap" Margin="15, 0, 10, 0" FontSize="14" Foreground="White">
+                </TextBlock>
+                <Grid Height="15" Width="15" Background="White" HorizontalAlignment="Left">
+                    <Button x:Name="btn_Hidden1" ToolTip="Свернуть" 
+                            HorizontalAlignment="Left" Height="15" Width="15" Click="btn_Hidden1_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/1.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btn_Visible1" ToolTip="Развернуть" 
+                            HorizontalAlignment="Left" Height="15" Width="15" Click="btn_Visible1_Click" Visibility="Hidden">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/plus-3-512.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+                <TextBlock x:Name="tbl_Info" Background="#243547" Width="auto" Margin="15, 5, 10, 5"
+                           TextWrapping="Wrap" Foreground="White">
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Window>
